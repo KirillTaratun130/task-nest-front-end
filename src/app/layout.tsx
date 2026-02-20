@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import { Noto_Sans } from "next/font/google";
-import "./globals.scss";
+import "./globals.css";
 import {SITE_NAME} from "@/constans/seo.constans";
 import {Providers} from "@/app/providers";
 import {Toaster} from "sonner";
@@ -30,10 +30,10 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={ zen.className }>
-      <Providers>
-          { children }
-          <Toaster theme='dark' position='bottom-right' duration={1500} />
-      </Providers>
+          <Providers>
+              { children }
+              <Toaster theme='dark' position='bottom-right' duration={1500} />
+          </Providers>
       </body>
     </html>
   );
