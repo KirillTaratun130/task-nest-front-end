@@ -1,0 +1,32 @@
+<svg width="120" height="120" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+
+    <!-- Outer ring -->
+    <circle cx="50" cy="50" r="38"
+            fill="none"
+            stroke="#60A5FA"
+            stroke-width="2"
+            stroke-linecap="round"/>
+
+    <!-- Inner ring -->
+    <circle cx="50" cy="50" r="28"
+            fill="none"
+            stroke="#3B82F6"
+            stroke-width="1.6"
+            stroke-linecap="round"/>
+
+    <!-- Core ring -->
+    <circle cx="50" cy="50" r="18"
+            fill="none"
+            stroke="#2563EB"
+            stroke-width="1.2"
+            stroke-linecap="round"/>
+
+    <!-- Checkmark -->
+    <path d="M40 52 L48 60 L62 42"
+          fill="none"
+          stroke="#34D399"
+          stroke-width="2.2"
+          stroke-linecap="round"
+          stroke-linejoin="round"/>
+
+</svg>
