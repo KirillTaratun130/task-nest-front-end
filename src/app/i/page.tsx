@@ -10,7 +10,7 @@ export const metadata: Metadata = {
 
 const DashboardPage = () => {
     return (
-        <div>
+        <div className='px-[15px]'>
             <Heading title='Статистика' />
             <Statistics />
         </div>

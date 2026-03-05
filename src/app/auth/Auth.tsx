@@ -36,28 +36,30 @@ const Auth = () => {
 
     return (
         <div className='flex min-h-screen'>
-            <form onSubmit={handleSubmit(onSubmit)} className='w-100 m-auto shadow  rounded-xl p-layout bg-gray-900/75 p-14 border-gray-800 border-[1px]'>
+            <form onSubmit={handleSubmit(onSubmit)} className='w-100 m-auto shadow  rounded-xl bg-card p-14 border-border border-1'>
                 <Heading title='Вход' />
-                <Field
-                    id='email'
-                    label='Email:'
-                    placeholder='Введите email'
-                    type='email'
-                    extra='mb-4'
-                    error={errors.email?.message}
-                    {...register('email', {
-                        required: 'Email обязателен!'
-                    })} />
-                <Field
-                    id='password'
-                    label='Пароль:'
-                    placeholder='Введите пароль'
-                    type='password'
-                    extra='mb-8'
-                    error={errors.password?.message}
-                    {...register('password', {
-                        required: 'Пароль обязателен!'
-                    })} />
+                <div className='mt-5'>
+                    <Field
+                        id='email'
+                        label='Email:'
+                        placeholder='Введите email'
+                        type='email'
+                        extra='mb-4'
+                        error={errors.email?.message}
+                        {...register('email', {
+                            required: 'Email обязателен!'
+                        })} />
+                    <Field
+                        id='password'
+                        label='Пароль:'
+                        placeholder='Введите пароль'
+                        type='password'
+                        extra='mb-8'
+                        error={errors.password?.message}
+                        {...register('password', {
+                            required: 'Пароль обязателен!'
+                        })} />
+                </div>
                 <div className='text-white flex items-center gap-5 justify-center'>
                     <Button onClick={() => setIsLoginForm(true)}>Войти</Button>
                     <Button onClick={() => setIsLoginForm(false)}>Зарегистрироваться</Button>
