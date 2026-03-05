@@ -1,10 +1,9 @@
 @import "tailwindcss";
 
 body {
-  @apply text-base overflow-hidden;
-  /*font-family: var(--font-zen), sans-serif;*/
-  /*color: rgb(var(--foreground-rgb));*/
+  @apply text-base overflow-x-hidden;
   background-color: #0B1220;
+  height: 100%;
 }
 
 input.defaultCheckbox {
