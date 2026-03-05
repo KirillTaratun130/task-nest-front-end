@@ -15,7 +15,7 @@ const Field = forwardRef<HTMLInputElement, IFieldProps>(
 			<div className={extra}>
 				<label
 					htmlFor={id}
-					className='block mb-2 text-sm font-medium text-gray-300'
+					className='block mb-2 text-sm font-medium text-text-body'
 				>
 					{label}
 				</label>
@@ -24,10 +24,10 @@ const Field = forwardRef<HTMLInputElement, IFieldProps>(
 					id={id}
 					type={type}
 					placeholder={placeholder}
-					className={`w-full px-4 py-3 bg-gray-900 border-gray-800 border-[1px] rounded-md outline-none placeholder-gray-500 text-gray-300 focus:border-blue-500 transition ${
+					className={`w-full px-4 py-3 bg-input-bg border-input-border border-1 rounded-md outline-none placeholder-input-placeholder text-text-body focus:border-input-focus transition ${
 						error
 							? 'border-red-500 focus:border-red-600'
-							: 'border-border focus:border-primary'
+							: 'border-input-border focus:border-input-focus'
 					}`}
 					{...rest}
 				/>
