@@ -1,5 +1,34 @@
 @import "tailwindcss";
 
+@theme {
+  /* Background */
+  --color-bg: #0B1220;
+  --color-bg-dark: #111827;
+
+  /* Card */
+  --color-card: rgba(17, 24, 39, 0.75);
+  --color-card-border: #1F2937;
+
+  /* Text */
+  --color-text-heading: #F9FAFB;
+  --color-text-body: #D1D5DB;
+  --color-text-secondary: #9CA3AF;
+
+  /* Buttons */
+  --color-primary: #3B82F6;
+  --color-primary-dark: #2563EB;
+  --color-primary-hover: #1D4ED8;
+
+  /* Accent */
+  --color-accent: #34D399;
+
+  /* Input */
+  --color-input-bg: #111827;
+  --color-input-border: #374151;
+  --color-input-focus: #3B82F6;
+  --color-input-placeholder: #6B7280;
+}
+
 body {
   @apply text-base overflow-x-hidden;
   background-color: #0B1220;
