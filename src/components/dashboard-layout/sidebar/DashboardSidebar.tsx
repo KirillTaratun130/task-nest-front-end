@@ -8,7 +8,7 @@ const DashboardSidebar = () => {
     return (
         <aside className='border-r h-full flex flex-col justify-between'>
             <div>
-                <Link href='/' className='flex items-center p-3 gap-2.5 border-b border-border'>
+                <Link href='/' className='flex items-center p-3 gap-2.5 border-b border-card-border'>
                     <Image src='/images/logo.svg' alt='logo' width={60} height={60} />
                     <span className='text-2xl font-bold text-text-heading relative'>TASK Nest</span>
                 </Link>

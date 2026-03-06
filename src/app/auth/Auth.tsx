@@ -60,7 +60,7 @@ const Auth = () => {
                             required: 'Пароль обязателен!'
                         })} />
                 </div>
-                <div className='text-white flex items-center gap-5 justify-center'>
+                <div className='flex items-center gap-5 justify-center'>
                     <Button onClick={() => setIsLoginForm(true)}>Войти</Button>
                     <Button onClick={() => setIsLoginForm(false)}>Зарегистрироваться</Button>
                 </div>
