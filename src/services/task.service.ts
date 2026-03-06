@@ -24,3 +24,5 @@ class TaskService {
         return response
     }
 }
+
+export const taskService = new TaskService()
