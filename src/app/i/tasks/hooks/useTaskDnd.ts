@@ -1,5 +1,6 @@
 import {useUpdateTask} from "@/app/i/tasks/hooks/useUpdateTask";
 import {DropResult} from "@hello-pangea/dnd";
+import {FILTERS} from "@/app/i/tasks/columns.data";
 
 export const useTaskDnd = () => {
     const { updateTask } = useUpdateTask()
@@ -26,5 +27,16 @@ export const useTaskDnd = () => {
             return;
         }
 
+        const newCreatedAt = FILTERS[destinationColumnId].format()
+
+        updateTask({
+            id: result.draggableId,
+            data: {
+                createdAt: newCreatedAt,
+                isCompleted: false
+            }
+        })
     }
+
+    return { onDragEnd }
 }
