@@ -1,3 +1,7 @@
+interface ICheckboxProps {
+    onChange:
+    checked:
+}
 
 const Checkbox = () => {
     return (
