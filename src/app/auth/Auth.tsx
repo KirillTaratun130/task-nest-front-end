@@ -24,7 +24,7 @@ const Auth = () => {
         mutationKey: ['auth'],
         mutationFn: (data: IAuthForm) => authService.main(isLoginForm ? 'login' : 'register', data),
         onSuccess() {
-            toast.success('Successfully login!')
+            toast.success('Успешный вход!')
             reset()
             push(DASHBOARD_PAGES.HOME)
         }
