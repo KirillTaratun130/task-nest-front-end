@@ -1,8 +1,8 @@
 import cn from "clsx";
 import { useTaskDebounce } from "@/app/i/tasks/hooks/useTaskDebounce";
-import { Dispatch, SetStateAction } from "react";
+import type { Dispatch, SetStateAction } from "react";
 import {Controller, useForm} from "react-hook-form";
-import { ITaskResponse, TypeTaskFormState } from "@/types/task.types";
+import type { ITaskResponse, TypeTaskFormState } from "@/types/task.types";
 import {GripVertical, Loader, Trash} from "lucide-react";
 import Checkbox from "@/components/ui/checkbox/Checkbox";
 import DatePicker from "@/components/ui/task-edit/date-picker/DatePicker";
@@ -10,6 +10,7 @@ import SingleSelect from "@/components/ui/task-edit/SingleSelect";
 import {useDeleteTask} from "@/app/i/tasks/hooks/useDeleteTask";
 
 import styles from './ListView.module.css'
+import TransparentField from "@/components/ui/fields/TransparentField";
 
 interface IListRowProps {
     item: ITaskResponse
@@ -44,7 +45,6 @@ const ListRow = ({ item, setItems }: IListRowProps) => {
                     )} />
 
                     <TransparentField {...register('name')} />
-
                 </span>
             </div>
             <div>
