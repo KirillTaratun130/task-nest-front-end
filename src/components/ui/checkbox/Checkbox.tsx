@@ -1,6 +1,6 @@
 interface ICheckboxProps {
     onChange: (value: boolean) => void
-    checked: boolean
+    checked: boolean | undefined
 }
 
 const Checkbox = ({ onChange, checked }: ICheckboxProps) => {
