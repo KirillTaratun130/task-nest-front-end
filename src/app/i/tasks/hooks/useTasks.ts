@@ -1,11 +1,19 @@
 import {useQuery} from "@tanstack/react-query";
 import {taskService} from "@/services/task.service";
+import {useState} from "react";
+import type {ITaskResponse} from "@/types/task.types";
 
 export const useTasks = () => {
-    const { data, isLoading } = useQuery({
+    const { data } = useQuery({
         queryKey: ['tasks'],
         queryFn: () => taskService.getTasks()
     })
 
-    return { data, isLoading }
+    const [ items, setItems ] = useState<ITaskResponse[] | undefined>(data?.data)
+
+    if (data?.data && items !== data.data) {
+        setItems(data.data)
+    }
+
+    return { items, setItems }
 }
