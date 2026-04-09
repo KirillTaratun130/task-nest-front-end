@@ -2,7 +2,6 @@ import {useOutSide} from "@/hooks/useOutSide";
 import {cn} from "tailwind-variants";
 import Badge from "@/components/ui/Badge";
 import {X} from "lucide-react";
-import {DayPicker} from "react-day-picker";
 
 export interface IOption {
     label: string;
@@ -24,7 +23,7 @@ const SingleSelect = ({ data, onChange, value, isColorSelect }: ISingleSelect) =
         <div className={cn(
             'relative min-w-36', { 'w-max': isColorSelect }
         )} ref={ref}>
-            <button onClick={(e) => {
+            <button className='cursor-pointer' onClick={(e) => {
                 e.preventDefault()
                 setIsShow(!isShow)
             }}>
@@ -41,7 +40,7 @@ const SingleSelect = ({ data, onChange, value, isColorSelect }: ISingleSelect) =
             </button>
 
             { value && (
-                <button className='absolute top-0 right-0 opacity-30 hover:opacity-100 transition' onClick={(e) => {
+                <button className='absolute top-0 right-0 opacity-30 hover:opacity-100 transition cursor-pointer' onClick={(e) => {
                     e.preventDefault()
                     onChange('')
                 }}>
