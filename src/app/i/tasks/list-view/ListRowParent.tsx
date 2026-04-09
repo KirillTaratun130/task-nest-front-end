@@ -18,7 +18,7 @@ const ListRowParent = ({ id, label, items, setItems }: IListRowParentProps) => {
         <Droppable droppableId={id}>
             {provided => (
                 <div ref={provided.innerRef} {...provided.droppableProps}>
-                    <div className=''>
+                    <div className='text-xl mt-2 pl-2 border-b-1 border-card-border pb-2'>
                         <div className='w-full'>{ label }</div>
                     </div>
                     {filterTasks(items, id)?.map((item, index) => (

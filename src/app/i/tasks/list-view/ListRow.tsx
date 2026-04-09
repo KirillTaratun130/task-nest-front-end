@@ -1,4 +1,3 @@
-import cn from "clsx";
 import { useTaskDebounce } from "@/app/i/tasks/hooks/useTaskDebounce";
 import type { Dispatch, SetStateAction } from "react";
 import {Controller, useForm} from "react-hook-form";
@@ -9,7 +8,6 @@ import DatePicker from "@/components/ui/task-edit/date-picker/DatePicker";
 import SingleSelect from "@/components/ui/task-edit/SingleSelect";
 import {useDeleteTask} from "@/app/i/tasks/hooks/useDeleteTask";
 
-import styles from './ListView.module.css'
 import TransparentField from "@/components/ui/fields/TransparentField";
 
 interface IListRowProps {
@@ -32,12 +30,12 @@ const ListRow = ({ item, setItems }: IListRowProps) => {
     useTaskDebounce({ watch, itemId: item.id })
 
     return (
-        <div className={cn(styles.row, watch('isCompleted') ? styles.completed : '', 'animation-opacity')}>
-            <div>
-                <span className='inline-flex items-center gap-2.5 w-full'>
+        <div className='grid grid-cols-[600px_1fr_1fr_40px]'>
+            <div className='border-1 border-card-border p-2 border-l-0 border-t-0'>
+                <span className='flex items-center gap-2'>
 
                     <button aria-describedby='todo-item'>
-                        <GripVertical className={styles.grip} />
+                        <GripVertical className='' />
                     </button>
 
                     <Controller control={control} name='isCompleted' render={({ field: { value, onChange } }) => (
@@ -47,12 +45,12 @@ const ListRow = ({ item, setItems }: IListRowProps) => {
                     <TransparentField {...register('name')} />
                 </span>
             </div>
-            <div>
+            <div className='border-1 border-card-border p-2'>
                 <Controller control={control} name='createdAt' render={({ field: { value, onChange } }) => (
                     <DatePicker onChange={onChange} value={value || ''} />
                 )} />
             </div>
-            <div className='capitalize'>
+            <div className='capitalize border-1 border-card-border p-2'>
                 <Controller control={control} name='priority' render={({ field: { value, onChange } }) => (
                     <SingleSelect data={['high', 'medium', 'low'].map(item =>({
                         value: item,
@@ -60,8 +58,8 @@ const ListRow = ({ item, setItems }: IListRowProps) => {
                     }))} onChange={onChange} value={value || ''} />
                 )} />
             </div>
-            <div>
-                <button className='opacity-50 transition hover:opacity-100' onClick={() =>
+            <div className='border-1 border-card-border p-2 border-r-0 flex items-center justify-center'>
+                <button className='opacity-50 transition hover:opacity-100 cursor-pointer' onClick={() =>
                 item.id ? deleteTask(item.id) : setItems(prev => prev?.slice(0, -1))}>
                     {isDeletePending ? <Loader size={15} /> : <Trash size={15} /> }
                 </button>

@@ -12,14 +12,14 @@ const ListView = () => {
 
     return (
         <DragDropContext onDragEnd={onDragEnd}>
-            <div className=''>
-                <div className=''>
-                    <div>Название задачи</div>
-                    <div>Дата выполнения</div>
-                    <div>Приоритет</div>
-                    <div></div>
+            <div className='text-text-heading mt-4'>
+                <div className='grid grid-cols-[600px_1fr_1fr_40px]'>
+                    <div className='border-1 border-card-border border-l-0 p-2'>Название задачи</div>
+                    <div className='border-1 border-card-border p-2'>Дата выполнения</div>
+                    <div className='border-1 border-card-border p-2'>Приоритет</div>
+                    <div className='border-1 border-card-border border-r-0 p-2'></div>
                 </div>
-                <div className=''>
+                <div>
                     { COLUMNS.map(column => (
                         <ListRowParent id={column.id} label={column.label} items={items} setItems={setItems} key={column.id} />
                     )) }
