@@ -2,6 +2,7 @@ import dayjs from "dayjs";
 import LocalizedFormat from 'dayjs/plugin/localizedFormat'
 import {useState} from "react";
 import {DayPicker, SelectSingleEventHandler} from "react-day-picker";
+import { ru } from "date-fns/locale";
 import {X} from "lucide-react";
 import {cn} from "tailwind-variants";
 import {useOutSide} from "@/hooks/useOutSide";
@@ -32,11 +33,11 @@ const DatePicker = ({ onChange, value, position = 'right' }: IDatePicker) => {
 
     return (
         <div className='relative' ref={ref}>
-            <button onClick={() => setIsShow(!isShow)}>
+            <button className='cursor-pointer' onClick={() => setIsShow(!isShow)}>
                 { value ? dayjs(value).format('LL') : 'Нажмите чтобы выбрать' }
             </button>
             { value && (
-                <button className='absolute -top-2 -right-4 opacity-30 hover:opacity-100 transition' onClick={() => onChange('')}>
+                <button className='absolute -top-0 -right-0 opacity-30 hover:opacity-100 transition cursor-pointer' onClick={() => onChange('')}>
                     <X size={14} />
                 </button>
             ) }
@@ -54,7 +55,8 @@ const DatePicker = ({ onChange, value, position = 'right' }: IDatePicker) => {
                         defaultMonth={selected}
                         selected={selected}
                         onSelect={handleDaySelect}
-                        weekStartsOn={1} />
+                        weekStartsOn={1}
+                        locale={ru} />
                 </div>
             ) }
         </div>
