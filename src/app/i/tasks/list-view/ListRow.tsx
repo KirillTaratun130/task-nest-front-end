@@ -35,7 +35,7 @@ const ListRow = ({ item, setItems }: IListRowProps) => {
                 <span className='flex items-center gap-2'>
 
                     <button aria-describedby='todo-item'>
-                        <GripVertical className='' />
+                        <GripVertical className='hover:opacity-70 transition' />
                     </button>
 
                     <Controller control={control} name='isCompleted' render={({ field: { value, onChange } }) => (

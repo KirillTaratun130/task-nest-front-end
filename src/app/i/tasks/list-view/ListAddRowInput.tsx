@@ -27,7 +27,7 @@ const ListAddRowInput = ({ filterDate, setItems }: IListAddRowInputProps) => {
 
     return (
         <div className='border-b-1 border-card-border p-2'>
-            <button onClick={addRow} className='italic opacity-40 text-sm'>
+            <button onClick={addRow} className='italic opacity-40 text-sm cursor-pointer'>
                 Добавить задачу...
             </button>
         </div>
