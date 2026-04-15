@@ -41,6 +41,10 @@ export const filterTasks = (
                 (dayjs(item.createdAt).isAfter(FILTERS['on-next-week']) || !item.createdAt) && !item.isCompleted
             )
 
+        case 'completed':
+            return tasks?.filter(item => item.isCompleted)
+
+
         default:
             return []
 
