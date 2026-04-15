@@ -17,7 +17,7 @@ export const useTaskDebounce = ({ watch, itemId }: IUseTaskDebounce) => {
     const debouncedCreateTask = useMemo(
         () => debounce((formData: TypeTaskFormState) => {
             createTask(formData)
-        }, 444),
+        }, 1000),
         [createTask]
     )
 
