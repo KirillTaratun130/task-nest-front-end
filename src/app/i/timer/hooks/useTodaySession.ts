@@ -2,14 +2,11 @@ import {useQuery} from "@tanstack/react-query";
 import {timerService} from "@/services/timer.service";
 import {Dispatch, SetStateAction, useEffect} from "react";
 import {ITimerRoundResponse} from "@/types/timer.types";
+import {useLoadSettings} from "@/app/i/timer/hooks/useLoadSettings";
+import type {ITimerState} from "@/app/i/timer/timer.types";
 
-interface IUseTodaySession {
-    setActiveRound: Dispatch<SetStateAction<ITimerRoundResponse | undefined>>
-    setSecondsLeft: Dispatch<SetStateAction<number>>
-    workInterval: number
-}
-
-export const useTodaySession = ({ setActiveRound, setSecondsLeft, workInterval }: IUseTodaySession) => {
+export const useTodaySession = ({ setActiveRound, setSecondsLeft }: ITimerState) => {
+    const { workInterval } = useLoadSettings()
     const { data: sessionResponse, isLoading, refetch, isSuccess } = useQuery({
         queryKey: ['get today session'],
         queryFn: () => timerService.getTodaySession()
@@ -23,10 +20,10 @@ export const useTodaySession = ({ setActiveRound, setSecondsLeft, workInterval }
             setActiveRound(activeRound)
 
             if (activeRound && activeRound.totalSeconds !== 0) {
-                setSecondsLeft(workInterval - activeRound.totalSeconds)
+                setSecondsLeft(activeRound.totalSeconds)
             }
         }
     }, [isSuccess, rounds, workInterval]);
 
-    return { sessionResponse, isLoading, refetch, isSuccess }
+    return { sessionResponse, isLoading, workInterval }
 }

@@ -2,6 +2,7 @@ import {Dispatch, SetStateAction} from "react";
 import type {ITimerRoundResponse} from "@/types/timer.types";
 
 export interface ITimerState {
+    isRunning: boolean
     secondsLeft: number
     activeRound: ITimerRoundResponse | undefined
     setIsRunning: Dispatch<SetStateAction<boolean>>

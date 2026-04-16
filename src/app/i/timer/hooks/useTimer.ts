@@ -1,7 +1,6 @@
 import {useLoadSettings} from "@/app/i/timer/hooks/useLoadSettings";
 import {useEffect, useState} from "react";
 import type {ITimerRoundResponse} from "@/types/timer.types";
-import {clearInterval} from "node:timers";
 import type {ITimerState} from "@/app/i/timer/timer.types";
 
 export const useTimer = (): ITimerState => {
@@ -25,7 +24,9 @@ export const useTimer = (): ITimerState => {
         }
 
         return () => {
-            if (interval) clearInterval(interval)
+            if (interval) {
+                clearInterval(interval)
+            }
         }
     }, [isRunning, secondsLeft, workInterval, activeRound]);
 
@@ -44,7 +45,8 @@ export const useTimer = (): ITimerState => {
         secondsLeft,
         setActiveRound,
         setIsRunning,
-        setSecondsLeft
+        setSecondsLeft,
+        isRunning
     }
 
 }
