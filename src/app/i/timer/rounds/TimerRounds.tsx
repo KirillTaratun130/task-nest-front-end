@@ -18,30 +18,32 @@ const TimerRounds = (
     const isCanNextRound = rounds ? !rounds[rounds.length - 1].isCompleted : false
 
     return (
-        <div className=''>
+        <div className='flex flex-row items-center gap-2.5 text-text-body'>
             <button
-                className=''
+                className='cursor-pointer'
                 disabled={!isCanPrevRound}
                 onClick={() => (isCanPrevRound ? prevRoundHandler() : false)}
             >
-                <ChevronLeft size={22}/>
+                <ChevronLeft size={26}/>
             </button>
-            <div className=''>
-                {rounds && rounds.map((round, index) => (
-                    <div key={index} className={cn(styles.round, {
-                        [styles.completed]: round.isCompleted,
-                        [styles.active]: round.id === activeRound?.id && !round.isCompleted
-                    })}>
-
-                    </div>
-                ))}
+            <div>
+                <div className='flex flex-row gap-2'>
+                    {rounds && rounds.map((round, index) => (
+                        <div key={index} className={cn('w-5 h-5 rounded-md border border-card-border transition-all duration-300', {
+                            'bg-primary border-primary': round.isCompleted,
+                            'bg-secondary border-secondary animate-pulse shadow-[0_0_8px_rgba(249,121,17,0.6)]':
+                                round.id === activeRound?.id && !round.isCompleted,
+                        })}>
+                        </div>
+                    ))}
+                </div>
             </div>
             <button
-                className=''
+                className='cursor-pointer'
                 disabled={!isCanNextRound}
                 onClick={() => (isCanNextRound ? nextRoundHandler() : false)}
             >
-                <ChevronRight size={22}/>
+                <ChevronRight size={26}/>
             </button>
         </div>
     );
