@@ -8,7 +8,7 @@ import SingleSelect from "@/components/ui/task-edit/SingleSelect";
 import Button from "@/components/ui/buttons/Button";
 
 const TimeBlockingForm = () => {
-    const { register, control, watch, reset, handleSubmit, getValues } = useFormContext<TypeTimeBlockFromState>()
+    const { register, control, watch, reset, handleSubmit } = useFormContext<TypeTimeBlockFromState>()
 
     const existsId = watch('id')
     const { updateTimeBlock } = useUpdateTimeBlock()
@@ -54,6 +54,8 @@ const TimeBlockingForm = () => {
                 placeholder='Введите интервал:'
                 extra='mb-4'
                 type='number'
+                min='30'
+                max='300'
                 {...register('duration', {
                     required: true,
                     valueAsNumber: true
