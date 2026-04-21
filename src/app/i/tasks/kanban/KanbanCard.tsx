@@ -1,22 +1,22 @@
-import { useTaskDebounce } from "@/app/i/tasks/hooks/useTaskDebounce";
-import type { Dispatch, SetStateAction } from "react";
-import {Controller, useForm} from "react-hook-form";
-import type { ITaskResponse, TypeTaskFormState } from "@/types/task.types";
-import {GripVertical, Loader, Trash} from "lucide-react";
-import Checkbox from "@/components/ui/checkbox/Checkbox";
-import DatePicker from "@/components/ui/task-edit/date-picker/DatePicker";
-import SingleSelect from "@/components/ui/task-edit/SingleSelect";
-import {useDeleteTask} from "@/app/i/tasks/hooks/useDeleteTask";
+import {useTaskDebounce} from "@/app/i/tasks/hooks/useTaskDebounce"
+import {Controller, useForm} from "react-hook-form"
+import type {ITaskResponse, TypeTaskFormState} from "@/types/task.types"
+import {GripVertical, Loader, Trash} from "lucide-react"
+import Checkbox from "@/components/ui/checkbox/Checkbox"
+import DatePicker from "@/components/ui/task-edit/date-picker/DatePicker"
+import SingleSelect from "@/components/ui/task-edit/SingleSelect"
+import {useDeleteTask} from "@/app/i/tasks/hooks/useDeleteTask"
+import TransparentField from "@/components/ui/fields/TransparentField"
+import {LEVEL, LEVEL_LABEL} from "@/app/i/tasks/level.data"
+import {useTaskStore} from "@/stores/task.store"
 
-import TransparentField from "@/components/ui/fields/TransparentField";
-
-interface IKanbanRowProps {
+interface IKanbanCardProps {
     item: ITaskResponse
-    setItems: Dispatch<SetStateAction<ITaskResponse[] | undefined>>
 }
 
-const KanbanCard = ({ item, setItems }: IKanbanRowProps) => {
+const KanbanCard = ({ item }: IKanbanCardProps) => {
     const { deleteTask, isDeletePending } = useDeleteTask()
+    const { setItems } = useTaskStore()
 
     const { register, control, watch } = useForm<TypeTaskFormState>({
         defaultValues: {
@@ -30,42 +30,42 @@ const KanbanCard = ({ item, setItems }: IKanbanRowProps) => {
     useTaskDebounce({ watch, itemId: item.id })
 
     return (
-        <div className='grid grid-cols-[600px_1fr_1fr_40px]'>
-            <div className='border-1 border-card-border p-2 border-l-0 border-t-0'>
-                <span className='flex items-center gap-2'>
+        <div className='text-text-heading flex flex-col w-[300px] gap-3 rounded-sm px-4 py-5 border border-card-border relative'>
+            <div className=''>
+                <span className='flex items-center gap-2.5'>
 
-                    <button aria-describedby='todo-item'>
-                        <GripVertical className='hover:opacity-70 transition' />
+                    <button aria-describedby='todo-item' className='absolute right-2 top-2 cursor-pointer'>
+                        <GripVertical />
                     </button>
 
                     <Controller control={control} name='isCompleted' render={({ field: { value, onChange } }) => (
                         <Checkbox onChange={onChange} checked={value}  />
                     )} />
 
-                    <TransparentField {...register('name')} />
+                    <TransparentField className='max-w-[210px] break-all' {...register('name')} />
                 </span>
             </div>
-            <div className='border-1 border-card-border p-2'>
+            <div className='max-w-[160px]'>
                 <Controller control={control} name='createdAt' render={({ field: { value, onChange } }) => (
                     <DatePicker onChange={onChange} value={value || ''} />
                 )} />
             </div>
-            <div className='capitalize border-1 border-card-border p-2'>
+            <div className='max-w-[144px]'>
                 <Controller control={control} name='priority' render={({ field: { value, onChange } }) => (
-                    <SingleSelect data={['high', 'medium', 'low'].map(item =>({
+                    <SingleSelect data={LEVEL.map(item =>({
                         value: item,
-                        label: item
+                        label: LEVEL_LABEL[item]
                     }))} onChange={onChange} value={value || ''} />
                 )} />
             </div>
-            <div className='border-1 border-card-border p-2 border-r-0 flex items-center justify-center'>
-                <button className='opacity-50 transition hover:opacity-100 cursor-pointer' onClick={() =>
+            <div className='absolute bottom-2 right-2'>
+                <button className='cursor-pointer' onClick={() =>
                 item.id ? deleteTask(item.id) : setItems(prev => prev?.slice(0, -1))}>
                     {isDeletePending ? <Loader size={15} /> : <Trash size={15} /> }
                 </button>
             </div>
         </div>
-    );
-};
+    )
+}
 
-export default KanbanCard;
+export default KanbanCard
