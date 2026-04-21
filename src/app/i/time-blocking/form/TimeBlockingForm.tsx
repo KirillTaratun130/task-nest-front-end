@@ -2,7 +2,7 @@ import {Controller, SubmitHandler, useFormContext} from "react-hook-form";
 import {TypeTimeBlockFromState} from "@/types/time-block.types";
 import {useUpdateTimeBlock} from "@/app/i/time-blocking/form/useUpdateTimeBlock";
 import {useCreateTimeBlock} from "@/app/i/time-blocking/form/useCreateTimeBlock";
-import {COLORS} from "@/app/i/time-blocking/form/colors.data";
+import {COLOR_LABELS, COLORS} from "@/app/i/time-blocking/form/colors.data";
 import Field from "@/components/ui/fields/Field";
 import SingleSelect from "@/components/ui/task-edit/SingleSelect";
 import Button from "@/components/ui/buttons/Button";
@@ -66,7 +66,7 @@ const TimeBlockingForm = () => {
                 <Controller control={control} name='color'  render={({ field: { value, onChange } }) => (
                     <SingleSelect data={COLORS.map(item => ({
                         value: item,
-                        label: item
+                        label: COLOR_LABELS[item]
                     }))} onChange={onChange} value={value || COLORS[COLORS.length - 1]} isColorSelect />
                 )} />
             </div>
