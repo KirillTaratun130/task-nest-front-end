@@ -17,7 +17,8 @@ interface ISingleSelect {
 
 const SingleSelect = ({ data, onChange, value, isColorSelect }: ISingleSelect) => {
     const { isShow, setIsShow, ref } = useOutSide(false)
-    const getValue = () => data.find(item => item.value === value)?.value
+    const getValue = () => data.find(item => item.value === value)
+    const getLabel = () => getValue()?.label
 
     return (
         <div className={cn(
@@ -32,7 +33,7 @@ const SingleSelect = ({ data, onChange, value, isColorSelect }: ISingleSelect) =
                         variant={value}
                         className='capitalize'
                         style={isColorSelect ? { backgroundColor: value } : {} }>
-                        { getValue() }
+                        { getLabel() }
                     </Badge>
                 ) : (
                     <Badge>Нажмите чтобы выбрать</Badge>
