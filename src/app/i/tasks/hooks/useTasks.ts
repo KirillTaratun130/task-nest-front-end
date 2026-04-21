@@ -1,22 +1,18 @@
-import {useQuery} from "@tanstack/react-query";
-import {taskService} from "@/services/task.service";
-import {useState} from "react";
-import {useEffect} from "react";
-import type {ITaskResponse} from "@/types/task.types";
+import {useQuery} from "@tanstack/react-query"
+import {taskService} from "@/services/task.service"
+import {useEffect} from "react"
+import {useTaskStore} from "@/stores/task.store"
 
 export const useTasks = () => {
-    const { data } = useQuery({
-        queryKey: ['tasks'],
-        queryFn: () => taskService.getTasks()
-    })
+	const { data } = useQuery({
+		queryKey: ['tasks'],
+		queryFn: () => taskService.getTasks()
+	})
 
-    const [ items, setItems ] = useState<ITaskResponse[] | undefined>(data?.data)
+	const { setItems } = useTaskStore()
 
-    useEffect(() => {
-        // eslint-disable-next-line react-hooks/set-state-in-effect
-        if (data?.data) setItems(data.data)
-    }, [data?.data])
+	useEffect(() => {
+		if (data?.data) setItems(data?.data) // eslint-disable-line react-hooks/set-state-in-effect
+	}, [data?.data]) // eslint-disable-line react-hooks/exhaustive-deps
 
-
-    return { items, setItems }
 }
