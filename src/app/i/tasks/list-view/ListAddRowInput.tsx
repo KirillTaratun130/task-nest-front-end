@@ -1,12 +1,12 @@
-import {Dispatch, SetStateAction} from "react";
-import {ITaskResponse} from "@/types/task.types";
+import {useTaskStore} from "@/stores/task.store"
 
 interface IListAddRowInputProps {
     filterDate?: string
-    setItems: Dispatch<SetStateAction<ITaskResponse[] | undefined>>
 }
 
-const ListAddRowInput = ({ filterDate, setItems }: IListAddRowInputProps) => {
+const ListAddRowInput = ({ filterDate }: IListAddRowInputProps) => {
+    const { setItems } = useTaskStore()
+
     const addRow = () => {
         setItems(prev => {
             if (!prev) {
@@ -31,7 +31,7 @@ const ListAddRowInput = ({ filterDate, setItems }: IListAddRowInputProps) => {
                 Добавить задачу...
             </button>
         </div>
-    );
-};
+    )
+}
 
-export default ListAddRowInput;
+export default ListAddRowInput

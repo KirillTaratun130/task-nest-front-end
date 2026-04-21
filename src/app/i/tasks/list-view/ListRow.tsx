@@ -1,22 +1,22 @@
-import { useTaskDebounce } from "@/app/i/tasks/hooks/useTaskDebounce";
-import type { Dispatch, SetStateAction } from "react";
-import {Controller, useForm} from "react-hook-form";
-import type { ITaskResponse, TypeTaskFormState } from "@/types/task.types";
-import {GripVertical, Loader, Trash} from "lucide-react";
-import Checkbox from "@/components/ui/checkbox/Checkbox";
-import DatePicker from "@/components/ui/task-edit/date-picker/DatePicker";
-import SingleSelect from "@/components/ui/task-edit/SingleSelect";
-import {useDeleteTask} from "@/app/i/tasks/hooks/useDeleteTask";
-
-import TransparentField from "@/components/ui/fields/TransparentField";
+import {useTaskDebounce} from "@/app/i/tasks/hooks/useTaskDebounce"
+import {Controller, useForm} from "react-hook-form"
+import type {ITaskResponse, TypeTaskFormState} from "@/types/task.types"
+import {GripVertical, Loader, Trash} from "lucide-react"
+import Checkbox from "@/components/ui/checkbox/Checkbox"
+import DatePicker from "@/components/ui/task-edit/date-picker/DatePicker"
+import SingleSelect from "@/components/ui/task-edit/SingleSelect"
+import {useDeleteTask} from "@/app/i/tasks/hooks/useDeleteTask"
+import TransparentField from "@/components/ui/fields/TransparentField"
+import {LEVEL, LEVEL_LABEL} from "@/app/i/tasks/level.data"
+import {useTaskStore} from "@/stores/task.store"
 
 interface IListRowProps {
     item: ITaskResponse
-    setItems: Dispatch<SetStateAction<ITaskResponse[] | undefined>>
 }
 
-const ListRow = ({ item, setItems }: IListRowProps) => {
+const ListRow = ({ item }: IListRowProps) => {
     const { deleteTask, isDeletePending } = useDeleteTask()
+    const { setItems } = useTaskStore()
 
     const { register, control, watch } = useForm<TypeTaskFormState>({
         defaultValues: {
@@ -52,9 +52,9 @@ const ListRow = ({ item, setItems }: IListRowProps) => {
             </div>
             <div className='capitalize border-1 border-card-border p-2'>
                 <Controller control={control} name='priority' render={({ field: { value, onChange } }) => (
-                    <SingleSelect data={['high', 'medium', 'low'].map(item =>({
+                    <SingleSelect data={LEVEL.map(item =>({
                         value: item,
-                        label: item
+                        label: LEVEL_LABEL[item]
                     }))} onChange={onChange} value={value || ''} />
                 )} />
             </div>
@@ -65,7 +65,7 @@ const ListRow = ({ item, setItems }: IListRowProps) => {
                 </button>
             </div>
         </div>
-    );
-};
+    )
+}
 
-export default ListRow;
+export default ListRow
